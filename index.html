@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="index.css">
+  <link href="https://fonts.googleapis.com/css?family=Bangers|Jacques+Francois+Shadow|Monofett|VT323&display=swap" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script src="http://threejs.org/examples/js/libs/stats.min.js"></script>
+  <script src="http://gsgd.co.uk/sandbox/jquery/easing/jquery.easing.1.3.js"></script>
+  <script src="https://kit.fontawesome.com/2d2206b357.js" crossorigin="anonymous"></script>
+  <title>DANCING POTATO</title>
+  <link rel = "icon" href = "img/thing.png">
+</head>
+<div id="particles-js"></div>
+<body>
+  <header>
+  </header>
+  <main>
+    <div class="container">
+      <nav>
+        <div class="row">
+          <div class="col-sm-1">
+              <div id="button_home" href="index.html">
+                <img class="home_img" height=50px width=50px; src="img/home.png" />
+              </div>
+          </div>
+          <div class="col-sm-1">
+            <div id="button_audiooff">
+              <img class="audio_img" height=50px width=50px; src="img/audiooff.png" />
+            </div>
+            <div id="button_audioon">
+              <img class="audio_img" height=50px width=50px; src="img/audioon.png" />
+            </div>
+          </div>
+          <div class="col-sm-1">
+            <div id="button_about">
+              <img class="about_img" height=50px width=50px; src="img/about.png" />
+            </div>
+          </div>
+        </div>
+        <!-- <button id="happybtn" class="btn btn-light navtext">happy</button>
+        <button id="sadbtn" class="btn btn-light navtext">sad</button>
+        <button id="dreamybtn" class="btn btn-light navtext">dreamy</button> -->
+      </nav>
+      <div class="homebox">
+        <div class="row">
+          <div class="col-sm-12">
+            <img src="img/sleep.png" id="button_play" />
+            <div class="text">
+              Click the thing to see what happens. <br />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="box">
+          <div class="row">
+            <div class="col-sm-12">
+              <img src="img/awake.png" id="button_play2" />
+              <img src="img/dance.gif" id="button_dance" />
+              <img src="img/dance2.gif" id="button_dance2" />
+              <div class="bubble"></div>
+              <div class="yes">YES</div>
+              <div class="no">NAH</div>
+            </div>
+          </div>
+          <div class="invite">INVITE A BUDDY</div>
+          <div class="galaxy">DANCE ALONE</div>
+          <div id="button_next">
+            <img class="about_img" height=50px width=50px; src="img/next.png" />
+          </div>
+          <div id="button_back">
+            <img class="about_img" height=50px width=50px; src="img/back.png" />
+          </div>
+        </div>
+      <div class="aboutbox">
+          <div class="abouttitle">
+            Hi. this is me!
+          </div>
+          <div class="abouttext">
+            <img src="img/shark.gif" /> <br />
+            Yooooo! Nice to meet you all. <br />
+            I am Hyejin Yoon. It's like Hey - Gin. (Yes. the drink) <br />
+            I am currently studying as an exchange student in lisbon. <Br />
+            This is one of my side project. <br />
+          </div>
+        </div>
+    </div>
+  </main>
+  <audio src='http://www.sousound.com/music/healing/healing_01.mp3'></audio>
+  <audio src='aud/guae.mp3'></audio>
+
+  <footer>
+    <p>
+      클릭하면 응원하는 말 해주기
+    </p>
+    <p>
+      버튼 누르면 다음으로 텍스트 시퀀셜하게 넘어가게 하기
+    </p>
+    <p>
+      첫화면 / 나머지 화면 class 처리해서 home,back 버튼 누르면 리셋하게. 해서 jquery 단순화하기
+    </p>
+
+  </footer>
+</body>
+
+<script type="text/javascript">
+//home
+$('#button_home').on('click', function() {
+  $('main').css('background','yellow');
+  $('.aboutbox').hide();
+  $('.box').hide();
+  $('.homebox').show();
+  $('audio')[1].pause();
+});
+
+//audio
+$('#button_audiooff').on('click', function() {
+  $('#button_audioon').show();
+  $('#button_audiooff').hide();
+  $('audio')[1].pause();
+  $('audio')[0].play();
+});
+$('#button_audioon').on('click', function() {
+  $('#button_audiooff').show();
+  $('#button_audioon').hide();
+  $('audio')[0].pause();
+});
+
+//about
+$('#button_about').on('click', function() {
+  $('main').css('background','darkgoldenrod');
+  $('.homebox').hide();
+  $('.box').hide();
+  $('.aboutbox').fadeIn();
+});
+
+//onhover img change
+  $("#button_play").hover(function(){
+      $(this).attr("src", function(index, attr){
+          return attr.replace("sleep.png", "sleepy.png");
+      });
+  },
+  function(){
+      $(this).attr("src", function(index, attr){
+          return attr.replace("sleepy.png", "sleep.png");
+      });
+  });
+
+//onclick img and text change -> img change는 그냥 나중에 div로 바꿀것 (처음으로 돌아가는 버튼 만들면서)
+  $('#button_play').on('click', function() {
+    $('.homebox').hide();
+    $('.box').show();
+    $('#button_play2').show();
+    $('.invite').hide();
+    $('.galaxy').hide();
+    $('#button_back').hide();
+    $('#button_dance').hide();
+    $('#button_dance2').hide();
+    $('.yes').hide()
+    $('.no').hide()
+    $('.bubble').fadeIn('slow');
+    $('.bubble').text('Hi.');
+    $('#button_next').fadeIn('slow');
+  });
+
+
+  $('#button_next').on('click', function() {
+    $('.bubble').text('Can i dance for you?');
+    $(this).hide();
+    $('.yes').fadeIn('slow');
+    $('.no').fadeIn('slow');
+  });
+
+  $('.no').on('click', function() {
+    $('.box').hide();
+    $('.homebox').show();
+  });
+
+  $('.yes').on('click', function() {
+    $('#button_play2').hide();
+    $('.yes').hide();
+    $('.no').hide();
+    $('.bubble').hide();
+    $('#button_dance').show();
+    $('#button_back').fadeIn();
+    $('.invite').fadeIn();
+    $('audio')[0].pause();
+    $('audio')[1].play();
+  });
+
+  $('.invite').on('click', function() {
+    $('#button_dance2').show();
+    $('.galaxy').fadeIn();c
+  });
+
+  $('.galaxy').on('click', function() {
+    $('#button_dance2').hide();
+  });
+
+  $('#button_back').on('click', function() {
+    $('.box').hide();
+    $('main').css('background','yellow');
+    $('.homebox').show();
+    $('audio')[1].pause();
+  });
+
+  particlesJS("particles-js", {"particles":{"number":{"value":400,"density":{"enable":true,"value_area":800}},"color":{"value":"#fff"},"shape":{"type":"circle","stroke":{"width":0,"color":"#000000"},"polygon":{"nb_sides":5},
+  "image":{"src":"img/github.svg","width":100,"height":100}},
+  "opacity":{"value":0.5,"random":true,"anim":{"enable":false,"speed":1,"opacity_min":0.1,"sync":false}},
+  "size":{"value":10,"random":true,"anim":{"enable":false,"speed":40,"size_min":0.1,"sync":false}},"line_linked":{"enable":false,"distance":500,"color":"#ffffff","opacity":0.4,"width":2},
+  "move":{"enable":true,"speed":6,"direction":"bottom","random":false,"straight":false,"out_mode":"out","bounce":false,"attract":{"enable":false,"rotateX":600,"rotateY":1200}}},
+  "interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"bubble"},"onclick":{"enable":true,"mode":"repulse"},"resize":true},"modes":{"grab":{"distance":400,"line_linked":{"opacity":0.5}},
+  "bubble":{"distance":400,"size":4,"duration":0.3,"opacity":1,"speed":3},"repulse":{"distance":200,"duration":0.4},"push":{"particles_nb":4},"remove":{"particles_nb":2}}},"retina_detect":true});
+
+
+//for bg color change
+// $('#happybtn').on('click', function() {
+//   $('main').css('background','yellow');
+//   $('.text').css('color','black');
+// });
+//
+// $('#sadbtn').on('click', function() {
+//   $('main').css('background','navy');
+//   $('.text').css('color','white');
+// });
+//
+// $('#dreamybtn').on('click', function() {
+//   $('main').css('background','green');
+//   $('.text').css('color','black');
+// });
+//
+//
+// $('#randombtn').on('click', function() {
+//   $('#audiosource').attr('src','aud/Fever.mp3');
+// });
+
+
+// var playlist = [
+//   {
+//     text: "guae by sun-u jung-a.",
+//     audio:  "aud/guae.mp3"
+//   },
+//   {
+//     text: "fever by beyonce.",
+//     audio:  "aud/Fever.mp3"
+//   },
+// ];
+
+// DO NOT CHANGE ANYTHING BELOW THIS LINE! //
+
+
+
+
+</script>
